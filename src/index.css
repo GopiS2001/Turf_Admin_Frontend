@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --color-navy: #192335;
+  --color-navy-900: #0f1726;
+  --color-navy-700: #243049;
+  --color-turf: #097e52;
+  --color-turf-600: #076a45;
+  --color-turf-50: #e8f5ef;
+  --color-accent: #ffaa00;
+  --color-cream: #f6f7f4;
+  --color-muted: #6b7385;
+  --color-line: #e7e9ee;
+  --color-surface: #ffffff;
+
+  --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+
+  --shadow-card: 0 1px 2px rgb(25 35 53 / 0.04), 0 8px 24px -12px rgb(25 35 53 / 0.12);
+}
+
+html,
+body {
+  background: var(--color-cream);
+  color: var(--color-navy);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-turf);
+  color: #fff;
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold whitespace-nowrap transition focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-60;
+}
+@utility btn-primary {
+  @apply btn bg-turf text-white hover:bg-turf-600 focus-visible:outline-turf;
+}
+@utility btn-secondary {
+  @apply btn border border-line bg-white text-navy hover:border-navy/30 hover:bg-cream focus-visible:outline-navy;
+}
+@utility btn-danger {
+  @apply btn bg-red-600 text-white hover:bg-red-700 focus-visible:outline-red-600;
+}
+@utility btn-ghost {
+  @apply btn px-2.5 text-muted hover:bg-cream hover:text-navy;
+}
+@utility field {
+  @apply w-full rounded-lg border border-line bg-white px-3.5 py-2.5 text-sm text-navy placeholder:text-muted/70 transition outline-none focus:border-turf focus:ring-2 focus:ring-turf/20 disabled:bg-cream disabled:text-muted;
+}
+@utility field-error {
+  @apply border-red-500 focus:border-red-500 focus:ring-red-500/20;
+}
+@utility card {
+  @apply rounded-xl border border-line bg-white shadow-card;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+}
