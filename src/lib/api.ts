@@ -62,7 +62,9 @@ function withTabLock<T>(fn: () => Promise<T>): Promise<T> {
 export function refreshSession(): Promise<Session> {
   refreshing ??= withTabLock(async () => {
     try {
-      const { data } = await api.post<Session>('/auth/refresh')
+      // Long timeout: this is the first request on load, and a free-tier API host can
+      // take up to a minute to wake from sleep.
+      const { data } = await api.post<Session>('/auth/refresh', undefined, { timeout: 90_000 })
       accessToken = data.accessToken
       return data
     } catch (err) {
